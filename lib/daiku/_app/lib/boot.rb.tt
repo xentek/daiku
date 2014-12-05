@@ -1,0 +1,40 @@
+# encoding: utf-8
+
+# environment
+ENV['RACK_ENV'] ||= 'development'
+
+GC::Profiler.enable
+
+# load path
+lib_path = File.expand_path('..', __FILE__)
+($:.unshift lib_path) unless ($:.include? lib_path)
+$app_root = File.expand_path('../../', __FILE__)
+
+# spinning up the ftl drive
+require 'bundler'
+Bundler.require(:default, ENV['RACK_ENV'])
+Dotenv.load if defined?(Dotenv)
+
+# stdlib
+require 'active_support/core_ext/hash/keys'
+require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/object/try'
+require 'active_support/core_ext/numeric/conversions'
+
+
+# errors
+require File.join($app_root, 'config/honeybadger')
+require 'errors/app'
+
+# models
+<% if @datamapper -%>
+require File.join($app_root, 'config/datamapper')
+DataMapper.finalize
+<% end -%>
+
+# services
+
+# reports
+
+# values
+

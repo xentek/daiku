@@ -1,0 +1,35 @@
+# encoding: utf-8
+
+# environment
+ENV['RACK_ENV'] ||= 'development'
+
+# load path
+lib_path = File.expand_path('../lib', __FILE__)
+($:.unshift lib_path) unless ($:.include? lib_path)
+
+# preparing for hyperspace
+require 'boot'
+Bundler.require(:default, :web)
+require './app'
+
+# middleware stack
+use Honeybadger::Rack::ErrorNotifier
+if %w(production staging).include? ENV['RACK_ENV']
+  use Rack::SSL, hsts: { subdomains: true }
+end
+use Rack::Cache, metastore: Dalli::Client.new, entitystore: Dalli::Client.new(nil, value_max_bytes: 10485760)
+use Rack::Deflater
+use Rack::Runtime
+
+# make the jump
+run App
+
+<% if @with_sidekiq -%>
+require 'sidekiq/web'
+map '/sidekiq' do
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == ENV['AUTH_USERNAME'] && password == ENV['AUTH_PASSWORD']
+  end
+  run Sidekiq::Web
+end
+<% end -%>

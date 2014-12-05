@@ -1,0 +1,7 @@
+Sidekiq.configure_server do |config|
+  config.redis = { namespace: ENV['APP_NAME'] }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { namespace: ENV['APP_NAME'], size: 1 }
+end

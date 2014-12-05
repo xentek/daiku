@@ -1,0 +1,27 @@
+#!/usr/bin/env rake
+
+# environment
+ENV['RACK_ENV'] ||= 'development'
+
+# load path
+lib_path = File.expand_path('../lib', __FILE__)
+($:.unshift lib_path) unless ($:.include? lib_path)
+
+# require farm
+require 'bundler'
+Bundler.require(:default, ENV['RACK_ENV'], :rake)
+require 'dotenv/tasks'
+require 'rake/testtask'
+
+# tasks
+Rake::TestTask.new do |t|
+  t.libs << "spec"
+  t.pattern = "spec/**/*_spec.rb"
+end
+task :default => [:environment, :test]
+
+task :environment => :dotenv do
+  require 'boot'
+end
+
+Dir.glob('./lib/tasks/**/*.rake').each { |tasks| import tasks }

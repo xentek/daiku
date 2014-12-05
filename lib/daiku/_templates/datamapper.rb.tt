@@ -1,0 +1,8 @@
+# encoding: utf-8
+
+require 'bundler'
+Bundler.require(:datamapper)
+ENV['DATABASE_LOG_LEVEL'] ||= 'info'
+DataMapper::Logger.new($stdout, ENV['DATABASE_LOG_LEVEL'])
+DataMapper::Model.raise_on_save_failure = true
+DataMapper.setup(:default, ENV['DATABASE_URL']) if ENV['DATABASE_URL']

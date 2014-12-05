@@ -1,0 +1,69 @@
+source 'https://rubygems.org'
+
+ruby <%= "'#{@ruby_version}'" %>
+
+gem 'activesupport', '~> 4.0.0', require: false
+gem 'dalli'
+gem 'escape_utils'
+gem 'honeybadger'
+gem 'nokogiri'
+gem 'oj'
+gem 'pry', require: false
+gem 'puma', require: false
+<%= "gem 'sidekiq'\n" if @with_sidekiq -%>
+
+<% if @datamapper -%>
+group :datamapper do
+  gem 'dm-aspects'
+  gem 'dm-aggregates'
+  gem 'dm-core'
+  gem 'dm-migrations'
+  gem 'dm-pager'
+  gem 'dm-postgres-adapter'
+  gem 'dm-postgres-types'
+  gem 'dm-timestamps'
+  gem 'dm-transactions'
+  gem 'dm-validations'
+end
+<% end -%>
+
+group :web do
+  gem 'sinatra', '~> 1.4.4', require: 'sinatra/base'
+  gem 'slim'
+  gem 'rack-cache', require: 'rack/cache'
+end
+
+group :production, :staging do
+  gem 'rack-ssl', require: 'rack/ssl', :group => :web
+<%= "  gem 'newrelic_rpm'\n" unless @no_newrelic -%>
+end
+
+group :rake do
+  gem 'rake' 
+end
+
+group :test do
+<%= "  gem 'database_cleaner'\n" if @datamapper -%>
+  gem 'rack-test', require: 'rack/test'
+  gem 'minitest'
+  gem 'minitest-spec-context'
+  gem 'minitest-reporters', require: 'minitest/reporters'
+  gem 'mocha', require: 'mocha/setup'
+<% if @with_vcr -%>
+  gem 'vcr', require: false
+  gem 'webmock', '< 1.12', require: false
+<% end -%>
+end
+
+group :assets do
+  gem 'sass'
+end
+
+group :development do
+  gem 'debugger', require: false
+end
+
+group :development, :test do
+  gem 'foreman', require: false
+  gem 'dotenv'
+end

@@ -1,0 +1,14 @@
+default:
+  - 'sass:default'
+  - 'coffee:default'
+  - 'uglify:default'
+  - 'imagemin:default'
+  - 'slim:default'
+  - 'robotstxt:default'
+production:
+  - 'sass:production'
+  - 'coffee:production'
+  - 'uglify:production'
+  - 'imagemin:production'
+  - 'slim:production'
+  - 'robotstxt:production'
