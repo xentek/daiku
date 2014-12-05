@@ -1,0 +1,21 @@
+{
+  "name": "<%= @app -%>",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-imagemin": "~0.4.0",
+    "grunt-contrib-sass": "~0.7.2",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-compress": "~0.6.1",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.3.0",
+    "grunt-newer": "~0.6.1",
+    "time-grunt": "~0.2.9",
+    "load-grunt-config": "~0.7.1",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-digest": "~0.1.2"
+  }
+}

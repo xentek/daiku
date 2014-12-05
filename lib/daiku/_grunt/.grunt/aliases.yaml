@@ -1,0 +1,14 @@
+default:
+  - 'clean'
+  - 'imagemin'
+  - 'sass'
+  - 'coffee'
+  - 'jshint'
+  - 'uglify'
+  - 'digest'
+  - 'compress'
+development:
+  - 'newer:imagemin'
+  - 'newer:sass:development'
+  - 'newer:coffee'
+  - 'newer:jshint'

@@ -1,0 +1,12 @@
+{
+  "name": "<%= @app -%>",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "requirejs": null,
+    "fastclick": "0.6.11",
+    "jquery.validation": null,
+    "css3-mediaqueries-js": null,
+    "jquery-placeholder": "2.0.7",
+    "html5shiv": "~3.7.0"
+  }
+}

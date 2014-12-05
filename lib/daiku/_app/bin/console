@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+ENV['RACK_ENV'] ||= 'development'
+# load path
+lib_path = File.expand_path('../../lib', __FILE__)
+($:.unshift lib_path) unless ($:.include? lib_path)
+
+# require farm
+require 'bundler'
+Bundler.require(:default, ENV['RACK_ENV'])
+require 'pry'
+require 'boot'
+
+# fire up the ftl drive
+Pry.config.prompt_name = "#{ENV['APP_NAME']}@#{ENV['RACK_ENV']}:pry"
+Pry.start

@@ -1,0 +1,18 @@
+*.rdb
+*.swp
+.#*
+.bundle
+.DS_Store
+.env-*
+.sass-cache
+db/*.sqlite3
+doc/*.csv
+log/*
+tags
+TAGS
+tmp/*
+public/assets/manifest.json
+node_modules
+
+# this should go last
+!.gitkeep

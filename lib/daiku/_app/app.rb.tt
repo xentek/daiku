@@ -1,0 +1,15 @@
+# encoding: utf-8
+
+class App < Sinatra::Base
+  configure do
+    enable :logging
+    set :app_file, __FILE__
+    set :root, File.expand_path('../', __FILE__)
+    set :tmp_dir,  File.join(root, 'tmp')
+  end
+
+  get '/' do
+    @title = '<%= @app %>'
+    slim :index
+  end
+end

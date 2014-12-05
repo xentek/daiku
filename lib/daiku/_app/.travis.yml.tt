@@ -1,0 +1,20 @@
+language: ruby
+cache: bundler
+rvm:
+  - <%= @ruby_version %>
+<% if @datamapper -%>
+services:
+  - postgresql
+addons:
+  postgresql: 9.3
+before_script: 
+  - psql -c 'create database "<%= @app -%>_test";' -U postgres
+  - 'bundle exec rake db:hstore'
+  - 'bundle exec rake db:migrate'
+<% end -%>
+notifications:
+  campfire: 'styleseek1:c0180aeedff806d0a8a1e145d98622085c092841@588282'
+  template:
+    - "%{repository}:%{branch} - %{message} [%{build_url}]"
+  on_success: change
+  on_failure: always

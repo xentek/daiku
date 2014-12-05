@@ -1,0 +1,35 @@
+# encoding: utf-8
+
+via = (ENV['RACK_ENV'] == 'test') ? :test : :smtp
+via_options = case ENV['RACK_ENV']
+              when 'development'
+                { address: 'localhost', port: '1025' }
+              when 'test'
+                {}
+              when 'staging'
+                {
+                  address: 'mailtrap.io',
+                  port: '2525',
+                  user_name: 'example',
+                  password: 'example',
+                  authentication: :login,
+                  domain: 'staging.example.com'
+                }
+              when 'production'
+                {
+                  address: 'smtp.example.com',
+                  port: '587',
+                  user_name: 'example',
+                  password: 'example',
+                  authentication: :login,
+                  domain: 'example.com'
+                }
+              end
+
+Pony.options = {
+  charset: 'utf-8',
+  from: 'Example <example@example.com>',
+  text_part_charset: 'utf-8',
+  via: via,
+  via_options: via_options
+}
