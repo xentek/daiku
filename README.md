@@ -1,4 +1,4 @@
-# Daiku 
+# Daiku
 ## Craft lightweight ruby applications
 
 ![Japanese Carpentry](http://upload.wikimedia.org/wikipedia/commons/0/0d/Wagoya_-_Japanese_Roof_Structure.jpg)
