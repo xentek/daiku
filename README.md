@@ -71,6 +71,7 @@ myapp
 │   ├── sass.coffee
 │   ├── slim.coffee
 │   └── uglify.coffee
+├── .node-version
 ├── .ruby-version
 ├── .slugignore
 ├── .travis.yml
