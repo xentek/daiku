@@ -60,6 +60,20 @@ This will generate the following app:
 
 ````
 myapp
+├── .bowerrc
+├── .env
+├── .gitignore
+├── .grunt
+│   ├── aliases.yaml
+│   ├── coffee.coffee
+│   ├── imagemin.coffee
+│   ├── robotstxt.coffee
+│   ├── sass.coffee
+│   ├── slim.coffee
+│   └── uglify.coffee
+├── .ruby-version
+├── .slugignore
+├── .travis.yml
 ├── Gemfile
 ├── Gruntfile.coffee
 ├── Procfile
@@ -67,11 +81,13 @@ myapp
 ├── app.rb
 ├── assets
 │   ├── images
+│   │   └── .gitkeep
 │   ├── javascripts
-│   │   ├── app.coffee
-│   │   ├── config.coffee
-│   │   └── main.coffee
+│   │   └── app.coffee
+│   ├── pages
+│   │   └── .gitkeep
 │   └── stylesheets
+│       ├── .gitkeep
 │       └── app.scss
 ├── bin
 │   └── console
@@ -87,25 +103,33 @@ myapp
 │   ├── core_ext
 │   │   └── frame_options.rb
 │   ├── errors
+│   │   ├── .gitkeep
 │   │   └── app.rb
 │   ├── jobs
+│   │   └── .gitkeep
 │   ├── models
+│   │   └── .gitkeep
 │   ├── services
+│   │   └── .gitkeep
 │   ├── tasks
+│   │   └── .gitkeep
 │   └── values
+│       └── .gitkeep
 ├── package.json
 ├── public
 │   ├── assets
-│   │   ├── development
-│   │   ├── production
-│   │   └── staging
+│   │   └── .gitkeep
 │   └── fonts
+│       └── .gitkeep
 ├── spec
 │   ├── _cassettes
+│   │   └── .gitkeep
 │   ├── app_spec.rb
 │   ├── db_helper.rb
 │   ├── models
+│   │   └── .gitkeep
 │   ├── services
+│   │   └── .gitkeep
 │   ├── spec_helper.rb
 │   └── vcr_helper.rb
 └── views
