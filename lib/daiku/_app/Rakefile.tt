@@ -7,9 +7,11 @@ ENV['RACK_ENV'] ||= 'development'
 lib_path = File.expand_path('../lib', __FILE__)
 ($:.unshift lib_path) unless ($:.include? lib_path)
 
-# require farm
+# bundler
 require 'bundler'
 Bundler.require(:default, ENV['RACK_ENV'], :rake)
+
+# require farm
 require 'dotenv/tasks'
 require 'rake/testtask'
 

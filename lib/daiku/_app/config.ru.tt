@@ -13,7 +13,6 @@ Bundler.require(:default, :web)
 require './app'
 
 # middleware stack
-use Honeybadger::Rack::ErrorNotifier
 if %w(production staging).include? ENV['RACK_ENV']
   use Rack::SSL, hsts: { subdomains: true }
 end
@@ -22,14 +21,5 @@ use Rack::Deflater
 use Rack::Runtime
 
 # make the jump
-run App
+run app
 
-<% if @with_sidekiq -%>
-require 'sidekiq/web'
-map '/sidekiq' do
-  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-    username == ENV['AUTH_USERNAME'] && password == ENV['AUTH_PASSWORD']
-  end
-  run Sidekiq::Web
-end
-<% end -%>

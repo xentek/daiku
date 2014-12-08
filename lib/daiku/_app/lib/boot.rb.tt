@@ -23,18 +23,12 @@ require 'active_support/core_ext/numeric/conversions'
 
 
 # errors
-require File.join($app_root, 'config/honeybadger')
 require 'errors/app'
 
 # models
-<% if @datamapper -%>
-require File.join($app_root, 'config/datamapper')
-DataMapper.finalize
-<% end -%>
 
 # services
 
-# reports
-
 # values
 
+# jobs

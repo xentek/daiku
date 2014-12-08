@@ -1,9 +1,0 @@
-{
-  "name": "<%= @app %>",
-  "main": ["assets/stylesheets/app.scss", "assets/javascripts/app.js"],
-  "dependencies": {
-    "jquery": "~2.0.3",
-    "requirejs": null,
-    "html5shiv": "~3.7.0",
-  }
-}

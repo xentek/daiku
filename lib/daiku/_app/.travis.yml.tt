@@ -2,16 +2,9 @@ language: ruby
 cache: bundler
 rvm:
   - <%= @ruby_version %>
-<% if @datamapper -%>
 services:
-  - postgresql
 addons:
-  postgresql: 9.3
-before_script: 
-  - psql -c 'create database "<%= @app -%>_test";' -U postgres
-  - 'bundle exec rake db:hstore'
-  - 'bundle exec rake db:migrate'
-<% end -%>
+before_script:
 notifications:
   template:
     - "%{repository}:%{branch} - %{message} [%{build_url}]"
