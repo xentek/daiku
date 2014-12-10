@@ -16,10 +16,10 @@ module Daiku
         end
 
         def dotenv
-          dbname = options.fetch(:'db-name') { "postgres://localhost/#{app}" }
-          dburl  = options.fetch(:'db-url') { app }
-          append_to_file "#{app}/.env", "DATABASE_NAME=#{dbname}"
-          append_to_file "#{app}/.env", "DATABASE_URL=#{dburl}"
+          dbname  = options.fetch(:'db-url') { app }
+          dburl = options.fetch(:'db-name') { "postgres://localhost/#{app}" }
+          append_to_file "#{app}/.env", "DATABASE_NAME=#{dbname}\n"
+          append_to_file "#{app}/.env", "DATABASE_URL=#{dburl}\n"
         end
 
         def config
@@ -28,6 +28,10 @@ module Daiku
 
         def gemfile
           insert_into_file "#{app}/Gemfile", "  gem 'database_cleaner'\n", after: "group :test do\n"
+        end
+
+        def spechelper
+          insert_into_file "#{app}/spec/spec_helper.rb", "DatabaseCleaner.strategy = :truncation\n", after: "Bundler.setup(:test)\n"
         end
 
         def travisyml

@@ -41,11 +41,16 @@ module Daiku
             require 'sidekiq/web'
             map '/sidekiq' do
               Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-              username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
+                username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
+              end
+              run Sidekiq::Web\n
             end
-            run Sidekiq::Web
           SKMW
           append_to_file "#{app}/config.ru", content
+        end
+
+        def spechelper
+          insert_into_file "#{app}/spec/spec_helper.rb", "require 'sidekiq/testing'\n", before: "require 'minitest/autorun'\n"
         end
       end
     end

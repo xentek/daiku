@@ -8,8 +8,8 @@ module.exports =
         'assets/vendor/jquery/dist/jquery.js'
         'assets/vendor/underscore/underscore.js'
       ]
-      'public/assets/main.js': [
-        'public/assets/main.js'
+      'public/assets/app.js': [
+        'public/assets/app.js'
       ]
     options:
       beautify: true

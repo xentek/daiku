@@ -20,6 +20,12 @@ module Daiku
           template '_templates/package.json.tt', "#{app}/package.json"
           directory '_config', "#{app}/.grunt"
         end
+
+        def layout
+          insert_into_file "#{app}/views/layout.slim", %Q(    link rel="stylesheet" type="text/css" href="/assets/app.css"\n), before: "  body\n"
+          insert_into_file "#{app}/views/layout.slim", %Q(    script src="/assets/html5shiv.js"\n), before: "  body\n"
+          insert_into_file "#{app}/views/layout.slim", %Q(    script src="/assets/app.js"\n), after: "    == yield\n"
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 module.exports =
   default:
-    files: 'public/assets/main.css': [
-      'assets/stylesheets/main.scss'
+    files: 'public/assets/app.css': [
+      'assets/stylesheets/app.scss'
     ]
     options:
       style: 'expanded'

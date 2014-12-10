@@ -36,3 +36,7 @@ group :development, :test do
   gem 'foreman', require: false
   gem 'dotenv'
 end
+
+group :assets do
+  gem 'sass'
+end

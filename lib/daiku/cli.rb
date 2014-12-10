@@ -14,7 +14,7 @@ module Daiku
     desc "new APP", "Generate a new application with daiku"
     method_option :port, required: true, aliases: '-p', type: :numeric, desc: 'Port this app should run on locally.'
     method_option :ruby, default: '2.1.5', desc: 'Specify the version of ruby this project should use.'
-    method_option :node, default: 'v0.10.33', desc: 'Specify the version of node this project should use.'
+    method_option :node, default: 'v0.10.33', desc: 'Specify the version of node this project should use (for grunt, etc).'
     method_option :assets, aliases: '-a', desc: 'Choose the assets workflow this project uses.', enum: Daiku::Plugins.plugin_names('assets')
     method_option :errors, aliases: '-e', desc: 'Choose the error reporting lib this project uses.', enum: Daiku::Plugins.plugin_names('errors')
     method_option :jobs, aliases: '-j', desc: 'Choose the background jobs lib this project uses.', enum: Daiku::Plugins.plugin_names('jobs')
@@ -26,6 +26,7 @@ module Daiku
       @app    = app
       @port   = options[:port]
       @ruby   = options[:ruby]
+      @node   = options[:node]
       @models = options[:models]
       @assets = options[:assets]
       @jobs   = options[:jobs]

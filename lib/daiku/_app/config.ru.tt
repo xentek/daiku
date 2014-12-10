@@ -21,5 +21,4 @@ use Rack::Deflater
 use Rack::Runtime
 
 # make the jump
-run app
-
+run App
