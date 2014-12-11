@@ -40,11 +40,30 @@ module Daiku
         def gemfile
           content = <<-SGEMS.strip_heredoc
             group :sequel do
+              gem 'pg'
               gem 'sequel'
               gem 'sequel_pg'
             end
           SGEMS
           append_to_file "#{app}/Gemfile", content
+        end
+
+        def rake
+          template "_templates/sequel.rake.tt", "#{app}/lib/tasks/sequel.rake"
+        end
+
+        def readme
+          append_to_file "#{app}/README.md" do
+            <<-SREADME.strip_heredoc
+              # Migrate It
+
+                  # migrate to latest version
+                  bundle exec rake db:sequel:migrate
+
+                  # migrate up to specific version
+                  bundle exec rake db:sequel:migrate[001]
+            SREADME
+          end
         end
       end
     end

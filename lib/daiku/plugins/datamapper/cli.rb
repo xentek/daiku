@@ -44,6 +44,30 @@ module Daiku
           DMGEMS
           append_to_file "#{app}/Gemfile", content
         end
+
+        def rake
+          template "_templates/datamapper.rake.tt", "#{app}/lib/tasks/datamapper.rake"
+        end
+
+        def readme
+          append_to_file "#{app}/README.md" do
+            <<-SREADME.strip_heredoc
+              # Migrate It
+
+                  # create postgres extensions, optional but recommended (run once)
+                  bundle exec rake db:datamapper:hstore
+                  bundle exec rake db:datamapper:postgis
+                  bundle exec rake db:datamapper:postgis_topology
+                  bundle exec rake db:datamapper:postgis_tiger_geocoder
+
+                  # upgrade database (safe migration)
+                  bundle exec rake db:datamapper:upgrade
+
+                  # migrate database (drops and recreates tables - danger!)
+                  bundle exec rake db:datamapper:migrate
+            SREADME
+          end
+        end
       end
     end
   end

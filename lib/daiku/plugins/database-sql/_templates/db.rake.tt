@@ -1,0 +1,12 @@
+namespace :db do
+  desc "Create databases *(postgres only)"
+  task :init => :environment do
+    puts "Creating #{ENV['DB_NAME']} database..."
+    `createdb #{ENV['DB_NAME']}`
+    puts "Done!"
+
+    puts "Creating #{ENV['DB_NAME']}_test database..."
+    `createdb #{ENV['DB_NAME']}_test`
+    puts 'Done!'
+  end
+end

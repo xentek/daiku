@@ -23,15 +23,48 @@ module Daiku
         end
 
         def config
-          template('_templates/db_helper.rb.tt', "#{app}/spec/db_helper.rb")
+          template '_templates/db_helper.rb.tt', "#{app}/spec/db_helper.rb"
         end
 
         def gemfile
           insert_into_file "#{app}/Gemfile", "  gem 'database_cleaner'\n", after: "group :test do\n"
         end
 
-        def spechelper
-          insert_into_file "#{app}/spec/spec_helper.rb", "DatabaseCleaner.strategy = :truncation\n", after: "Bundler.setup(:test)\n"
+        def rake
+          template "_templates/db.rake.tt", "#{app}/lib/tasks/db.rake"
+        end
+
+        def readme
+          content = <<-DBREADME
+          ## Sync It
+
+          _Instructions on how to sync the database..._
+
+          `production` to `staging`
+
+          Sync DB:
+
+              # instructions go here...
+
+          ---
+
+          ### `production` to `development`
+
+          Sync DB:
+
+              # instructions go here...
+
+          ---
+
+          ### `staging` to `development`
+
+          Sync DB:
+
+              # instructions go here...
+
+
+          DBREADME
+          append_to_file "#{app}/README.md", content
         end
 
         def travisyml

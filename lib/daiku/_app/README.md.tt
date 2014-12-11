@@ -1,0 +1,23 @@
+<%= @app -%>
+=======
+<%= @app -%> description...
+
+## Getting Started
+
+    git clone git@github.com:YOUR_USER_OR_ORG/stylegame.git ${PROJECTS_DIR}/stylegame
+    cd ${PROJECTS_DIR}/stylegame
+    bundle install
+
+## Run It
+
+  be foreman start
+  open http://localhost:<%= @port -%>
+
+## Test It
+
+    # all specs
+    be rake
+
+    # specific test suite
+    be ruby -I spec -I lib ./spec/path/to/file_spec.rb
+

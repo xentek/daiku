@@ -1,0 +1,49 @@
+namespace :db do
+  namespace :datamapper do
+    desc "Migrate tables for DataMapper models (potentially destructive)"
+    task :migrate => :environment do
+      puts "Warning: Potentially Destructive Action!"
+      puts "Data loss WILL occur in modified tables!"
+      puts "Auto-Migrating models in 2 seconds..."
+      sleep 2
+      DataMapper.auto_migrate!
+      puts "Done!"
+    end
+    
+    desc "Upgrade tables to reflect DataMapper models"
+    task :upgrade => :environment do
+      puts "Auto-Upgrading models..."
+      DataMapper.auto_upgrade!
+      puts "Done!"
+    end
+
+    desc "Add hstore support" 
+    task :hstore => :environment do
+      puts "Adding hstore support..."
+      DataMapper.repository.adapter.execute('CREATE EXTENSION hstore;')
+      puts "Done!"
+    end
+    
+    desc "Add postgis support" 
+    task :postgis => :environment do
+      puts "Adding postgis support..."
+      DataMapper.repository.adapter.execute('CREATE EXTENSION postgis;')
+      puts "Done!"
+    end
+
+    desc "Add postgis_topology support" 
+    task :postgis_topology => :environment do
+      puts "Adding postgis_topology support..."
+      DataMapper.repository.adapter.execute('CREATE EXTENSION postgis_topology;')
+      puts "Done!"
+    end
+    
+    desc "Add postgis_tiger_geocoder support" 
+    task :postgis_tiger_geocoder => :environment do
+      puts "Adding postgis_tiger_geocoder support..."
+      DataMapper.repository.adapter.execute('CREATE EXTENSION fuzzystrmatch;')
+      DataMapper.repository.adapter.execute('CREATE EXTENSION postgis_tiger_geocoder;')
+      puts "Done!"
+    end
+  end
+end

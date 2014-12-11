@@ -26,6 +26,22 @@ module Daiku
           insert_into_file "#{app}/views/layout.slim", %Q(    script src="/assets/html5shiv.js"\n), before: "  body\n"
           insert_into_file "#{app}/views/layout.slim", %Q(    script src="/assets/app.js"\n), after: "    == yield\n"
         end
+
+        def readme
+          insert_into_file "#{app}/README.md", "bower install\n", after: "    bundle install\n"
+          insert_into_file "#{app}/README.md", "npm install\n",   after: "    bundle install\n"
+          insert_into_file "#{app}/README.md", before: "## Run It\n" do
+            <<-GREADME.strip_heredoc
+              ## Compile It
+
+                  # for development and staging
+                  grunt default
+
+                  # for production
+                  grunt production
+            GREADME
+          end
+        end
       end
     end
   end

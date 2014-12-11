@@ -89,6 +89,7 @@ myapp
 ├── Gemfile
 ├── Gruntfile.coffee
 ├── Procfile
+├── README.md
 ├── Rakefile
 ├── app.rb
 ├── assets
@@ -124,7 +125,9 @@ myapp
 │   ├── services
 │   │   └── .gitkeep
 │   ├── tasks
-│   │   └── .gitkeep
+│   │   ├── .gitkeep
+│   │   ├── datamapper.rake
+│   │   └── db.rake
 │   └── values
 │       └── .gitkeep
 ├── package.json

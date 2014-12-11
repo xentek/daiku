@@ -16,14 +16,14 @@ require 'dotenv/tasks'
 require 'rake/testtask'
 
 # tasks
+task :environment => :dotenv do
+  require 'boot'
+end
+
 Rake::TestTask.new do |t|
   t.libs << "spec"
   t.pattern = "spec/**/*_spec.rb"
 end
 task :default => [:environment, :test]
-
-task :environment => :dotenv do
-  require 'boot'
-end
 
 Dir.glob('./lib/tasks/**/*.rake').each { |tasks| import tasks }
