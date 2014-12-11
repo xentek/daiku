@@ -27,6 +27,9 @@ require 'daiku/plugins/honeybadger/cli'
 require 'daiku/plugins/newrelic'
 require 'daiku/plugins/newrelic/cli'
 
+require 'daiku/plugins/sequel'
+require 'daiku/plugins/sequel/cli'
+
 require 'daiku/plugins/sidekiq'
 require 'daiku/plugins/sidekiq/cli'
 

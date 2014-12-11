@@ -1,0 +1,15 @@
+Sequel.migration do
+  up do
+    run 'CREATE EXTENSION postgis;'
+    run 'CREATE EXTENSION postgis_topology;'
+    run 'CREATE EXTENSION fuzzystrmatch;'
+    run 'CREATE EXTENSION postgis_tiger_geocoder;'
+  end
+
+  down do
+    run 'DROP EXTENSION IF EXISTS postgis;'
+    run 'DROP EXTENSION IF EXISTS postgis_topology;'
+    run 'DROP EXTENSION IF EXISTS fuzzystrmatch;'
+    run 'DROP EXTENSION IF EXISTS postgis_tiger_geocoder;'
+  end
+end

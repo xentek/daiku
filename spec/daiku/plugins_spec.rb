@@ -11,6 +11,7 @@ describe Daiku::Plugins do
       Daiku::Plugins::Grunt,
       Daiku::Plugins::Honeybadger,
       Daiku::Plugins::Newrelic,
+      Daiku::Plugins::Sequel,
       Daiku::Plugins::Sidekiq,
       Daiku::Plugins::Vcr
     ]
@@ -47,7 +48,7 @@ describe Daiku::Plugins do
   end
 
   it "can filter plugins by type" do
-    subject.filter_plugins('models', :type).must_equal [subject::Datamapper.meta]
+    subject.filter_plugins('models', :type).must_equal [subject::Datamapper.meta, subject::Sequel.meta]
   end
 
   it "returns names of all plugins" do
@@ -55,6 +56,6 @@ describe Daiku::Plugins do
   end
 
   it "returns names of plugins of type: models" do
-    subject.plugin_names('models').must_equal ['datamapper']
+    subject.plugin_names('models').must_equal ['datamapper', 'sequel']
   end
 end

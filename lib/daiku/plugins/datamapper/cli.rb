@@ -17,7 +17,7 @@ module Daiku
           insert_into_file "#{app}/lib/boot.rb", :after => "#models\n" do
             <<-DMREQ.strip_heredoc
               require File.join($app_root, 'config/datamapper')
-              # insert require statements for models here
+              # require models here
               DataMapper.finalize
             DMREQ
           end

@@ -1,0 +1,27 @@
+# encoding: utf-8
+
+require 'bundler'
+Bundler.require(:sequel)
+
+# environment setup
+ENV['DATABASE_LOG_LEVEL'] ||= 'info'
+ENV['DATABASE_MAX_CONNECTIONS'] ||= 4
+ENV['DATABASE_SSLMODE'] ||= 'prefer'
+ENV['DATABASE_TIMEOUT'] ||= 10
+
+# database instance options
+sequel_opts = { 
+  loggers: [Logger.new($stdout, ENV['DATABASE_LOG_LEVEL'])],
+  max_connections: ENV['DATABASE_MAX_CONNECTIONS'].to_i,
+  sslmode: ENV['DATABASE_SSLMODE'],
+  connect_timeout: ENV['DATABASE_TIMEOUT']
+}
+
+# database connection
+DB = Sequel.connect(ENV['DATABASE_URL'], sequel_opts)
+
+# load postgres specific datatype support
+DB.extension :pg_array
+DB.extension :pg_hstore
+DB.extension :pg_json
+DB.extension :pg_streaming
