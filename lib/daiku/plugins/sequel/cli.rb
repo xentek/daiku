@@ -31,9 +31,9 @@ module Daiku
           empty_directory("#{app}/db")
           empty_directory("#{app}/db/migrations")
           create_file("#{app}/db/migrations/.gitkeep", "")
-          template('_templates/001_create_extension_hstore.rb.tt', "#{app}/app/db/migrations/001_create_extension_hstore.rb")
+          template('_templates/001_create_extension_hstore.rb.tt', "#{app}/db/migrations/001_create_extension_hstore.rb")
           if options[:'sequel-postgis']
-            template('_templates/002_create_extension_postgis.rb.tt', "#{app}/app/db/migrations/002_create_extension_postgis.rb")
+            template('_templates/002_create_extension_postgis.rb.tt', "#{app}/db/migrations/002_create_extension_postgis.rb")
           end
         end
 
